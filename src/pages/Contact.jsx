@@ -1,0 +1,10 @@
+import { useState } from 'react';
+import { ArrowRight, ArrowUpRight, Check, Globe2 } from 'lucide-react';
+import { ContactBanner, Heading, PageHero } from '../components/PageElements.jsx';
+export default function Contact() {
+  const [sent, setSent] = useState(false);
+  return <><PageHero eyebrow="CONTACT" title={<>Let’s start<br /><em>somewhere.</em></>} body="Tell us what you’re working on, what’s getting in the way or what you’re curious about. We’d love to hear from you." /><section className="section"><div className="container contact-layout"><div className="contact-details"><Heading eyebrow="GET IN TOUCH" title="A good conversation changes things." /><div><span>EMAIL</span><a href="mailto:eng.maryamshah@gmail.com">eng.maryamshah@gmail.com</a></div><div><span>PHONE</span><a href="tel:+923035862728">03035862728</a></div><div><span>OFFICE</span><p>Faisalabad, Pakistan<br />By appointment</p></div><div className="map-placeholder"><Globe2 /><span>FAISALABAD · PAKISTAN</span><small>Office location placeholder</small></div></div>{sent ? <div className="success"><Check /><h3>Message received.</h3><p>Thanks for reaching out. This demo form does not send or store messages.</p><button className="text-link" onClick={() => setSent(false)}>Send another message <ArrowRight size={16} /></button></div> : <form className="form-grid contact-form" onSubmit={e => {
+          e.preventDefault();
+          setSent(true);
+        }}><label>Name<input required placeholder="Your name" /></label><label>Email<input required type="email" placeholder="you@example.com" /></label><label className="wide">Subject<input required placeholder="What would you like to talk about?" /></label><label className="wide">Message<textarea required rows="6" placeholder="A little context goes a long way…" /></label><button className="button" type="submit">Send a demo message <ArrowUpRight size={16} /></button><p className="form-note">This is a frontend demo. Messages are not stored or sent.</p></form>}</div></section></>;
+}
